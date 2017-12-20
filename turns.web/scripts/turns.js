@@ -1,28 +1,46 @@
 var turns;
 (function (turns) {
-    var design;
-    (function (design) {
-        console.log("turns.design.Game");
-        var Game = (function () {
-            function Game(name) {
-                console.log("turns.design.Game(): " + name);
-            }
-            return Game;
-        }());
-        design.Game = Game;
-    })(design = turns.design || (turns.design = {}));
+    var modules = {};
+    function module(name, constructor) {
+        modules[name] = constructor;
+    }
+    turns.module = module;
+    function init() {
+        $("[turns-play]").each(function (i, e) {
+            var element = $(e);
+            var moduleName = element.attr("turns-play");
+            var module = modules[moduleName];
+            module();
+        });
+    }
+    $(init);
 })(turns || (turns = {}));
 var turns;
 (function (turns) {
     var design;
     (function (design) {
-        var Rule = (function () {
-            function Rule(name) {
-                console.log("turns.design.Rule(): " + name);
+        var Grid = (function () {
+            function Grid(width, height, defaultValue) {
+                this.width = width;
+                this.height = height;
+                this.spaces = [];
+                this.get = function (row, col) {
+                    return this.spaces[row][col];
+                };
+                this.set = function (row, col, value) {
+                    this.spaces[row][col] = value;
+                };
+                this.spaces = [];
+                for (var r = 0; r < width; r++) {
+                    this.spaces[r] = [];
+                    for (var c = 0; c < height; c++) {
+                        this.spaces[r][c] = defaultValue;
+                    }
+                }
             }
-            return Rule;
+            return Grid;
         }());
-        design.Rule = Rule;
+        design.Grid = Grid;
     })(design = turns.design || (turns.design = {}));
 })(turns || (turns = {}));
 //# sourceMappingURL=turns.js.map

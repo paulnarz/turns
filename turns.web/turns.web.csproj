@@ -69,8 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="scripts\jquery-3.2.1.js" />
+    <Content Include="scripts\jquery-3.2.1.min.js" />
+    <Content Include="scripts\jquery-3.2.1.slim.js" />
+    <Content Include="scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="scripts\turns\tsconfig.json" />
     <Content Include="scripts\games\tictactoe\tsconfig.json" />
+    <Content Include="scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="scripts\jquery-3.2.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,8 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\games\tictactoe\tictactoe.ts" />
-    <TypeScriptCompile Include="scripts\turns\design\game.ts" />
-    <TypeScriptCompile Include="scripts\turns\design\rule.ts" />
+    <TypeScriptCompile Include="scripts\turns\design\grid.ts" />
+    <TypeScriptCompile Include="scripts\turns\modules.ts" />
+    <TypeScriptCompile Include="scripts\turns\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -97,6 +106,7 @@
   <ItemGroup>
     <Folder Include="scripts\turns\play\" />
     <Folder Include="scripts\turns\simulate\" />
+    <Folder Include="scripts\turns\ui\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
