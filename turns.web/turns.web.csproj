@@ -95,9 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\games\tictactoe\tictactoe.ts" />
+    <TypeScriptCompile Include="scripts\games\tictactoe\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="scripts\turns\design\grid.ts" />
     <TypeScriptCompile Include="scripts\turns\modules.ts" />
     <TypeScriptCompile Include="scripts\turns\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="scripts\turns\ui\htmlGridView.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +108,6 @@
   <ItemGroup>
     <Folder Include="scripts\turns\play\" />
     <Folder Include="scripts\turns\simulate\" />
-    <Folder Include="scripts\turns\ui\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

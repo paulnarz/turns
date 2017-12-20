@@ -8,9 +8,9 @@
     function init() {
         $("[turns-play]").each((i, e) => {
             var element = $(e);
-            var moduleName = element.attr("turns-play");            
+            var moduleName = element.attr("turns-play");        
             var module = modules[moduleName];
-            module();
+            module(element);
         });
     }
 

@@ -2,11 +2,11 @@
     export class Grid<T> {
         spaces: T[][] = [];
 
-        constructor(private width: number, private height: number, defaultValue: T) {
+        constructor(public width: number, public height: number, defaultValue: T) {
             this.spaces = [];
-            for (var r = 0; r < width; r++) {
+            for (var r = 0; r < height; r++) {
                 this.spaces[r] = [];
-                for (var c = 0; c < height; c++) {
+                for (var c = 0; c < width; c++) {
                     this.spaces[r][c] = defaultValue;
                 }
             }
