@@ -6,6 +6,8 @@
         table: JQuery;
         tbody: JQuery;
         cells: JQuery[][];
+        playerIndex: number;
+        playerInputCallback: (playerIndex: number, row: number, col: number) => boolean;
 
         constructor(element: JQuery) {
             this.element = element;
@@ -30,6 +32,8 @@
                     var cell = $("<td>");
 
                     cell.text(this.display(this.board.get(r, c)));
+                    cell.data("row", r);
+                    cell.data("col", c);
 
                     this.cells[r][c] = cell;
 
@@ -40,6 +44,8 @@
             }
 
             this.element.append(this.table);
+
+            this.table.click(e => this.onTableClick(e));
         }
 
         draw = function () {
@@ -48,6 +54,25 @@
                     this.cells[r][c].text(this.display(this.board.get(r, c)));
                 }
             }
+        }
+
+        onTableClick = function (eventObject: JQueryEventObject): any {
+            if (!eventObject || !eventObject.target || eventObject.target.tagName != "TD")
+                return;
+
+            if (!this.playerInputCallback)
+                return;
+
+            var e = $(eventObject.target)
+            var row = e.data("row");
+            var col = e.data("col");
+
+            this.playerInputCallback(this.playerIndex, row, col);
+        }
+
+        playerInput = function (playerIndex: number, callback: (playerIndex: number, row: number, col: number) => boolean): void {
+            this.playerIndex = playerIndex;
+            this.playerInputCallback = callback;
         }
     }
 

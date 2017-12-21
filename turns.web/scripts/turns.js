@@ -50,6 +50,7 @@ var turns;
         var HtmlGridView = (function () {
             function HtmlGridView(element) {
                 this.attach = function (board, display) {
+                    var _this = this;
                     this.board = board;
                     this.display = display;
                     this.element.empty();
@@ -62,12 +63,15 @@ var turns;
                         for (var c = 0; c < this.board.width; c++) {
                             var cell = $("<td>");
                             cell.text(this.display(this.board.get(r, c)));
+                            cell.data("row", r);
+                            cell.data("col", c);
                             this.cells[r][c] = cell;
                             row.append(cell);
                         }
                         this.tbody.append(row);
                     }
                     this.element.append(this.table);
+                    this.table.click(function (e) { return _this.onTableClick(e); });
                 };
                 this.draw = function () {
                     for (var r = 0; r < this.board.height; r++) {
@@ -75,6 +79,20 @@ var turns;
                             this.cells[r][c].text(this.display(this.board.get(r, c)));
                         }
                     }
+                };
+                this.onTableClick = function (eventObject) {
+                    if (!eventObject || !eventObject.target || eventObject.target.tagName != "TD")
+                        return;
+                    if (!this.playerInputCallback)
+                        return;
+                    var e = $(eventObject.target);
+                    var row = e.data("row");
+                    var col = e.data("col");
+                    this.playerInputCallback(this.playerIndex, row, col);
+                };
+                this.playerInput = function (playerIndex, callback) {
+                    this.playerIndex = playerIndex;
+                    this.playerInputCallback = callback;
                 };
                 this.element = element;
             }

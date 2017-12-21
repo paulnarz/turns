@@ -19,8 +19,12 @@ declare namespace turns.ui {
         table: JQuery;
         tbody: JQuery;
         cells: JQuery[][];
+        playerIndex: number;
+        playerInputCallback: (playerIndex: number, row: number, col: number) => boolean;
         constructor(element: JQuery);
         attach: (board: design.Grid<T>, display: (value: T) => string) => void;
         draw: () => void;
+        onTableClick: (eventObject: JQueryEventObject) => any;
+        playerInput: (playerIndex: number, callback: (playerIndex: number, row: number, col: number) => boolean) => void;
     }
 }
