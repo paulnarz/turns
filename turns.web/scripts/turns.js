@@ -49,8 +49,8 @@ var turns;
     (function (ui) {
         var HtmlGridView = (function () {
             function HtmlGridView(element) {
+                var _this = this;
                 this.attach = function (board, display) {
-                    var _this = this;
                     this.board = board;
                     this.display = display;
                     this.element.empty();
@@ -71,7 +71,7 @@ var turns;
                         this.tbody.append(row);
                     }
                     this.element.append(this.table);
-                    this.table.click(function (e) { return _this.onTableClick(e); });
+                    this.table.click(this.onTableClick);
                 };
                 this.draw = function () {
                     for (var r = 0; r < this.board.height; r++) {
@@ -83,18 +83,19 @@ var turns;
                 this.onTableClick = function (eventObject) {
                     if (!eventObject || !eventObject.target || eventObject.target.tagName != "TD")
                         return;
-                    if (!this.playerInputCallback)
+                    if (!_this.playerInputCallback)
                         return;
                     var e = $(eventObject.target);
                     var row = e.data("row");
                     var col = e.data("col");
-                    this.playerInputCallback(this.playerIndex, row, col);
+                    _this.playerInputCallback(_this.playerIndex, row, col);
                 };
                 this.playerInput = function (playerIndex, callback) {
-                    this.playerIndex = playerIndex;
-                    this.playerInputCallback = callback;
+                    _this.playerIndex = playerIndex;
+                    _this.playerInputCallback = callback;
                 };
                 this.element = element;
+                console.log("dop");
             }
             return HtmlGridView;
         }());

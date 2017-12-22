@@ -24,7 +24,7 @@ declare namespace turns.ui {
         constructor(element: JQuery);
         attach: (board: design.Grid<T>, display: (value: T) => string) => void;
         draw: () => void;
-        onTableClick: (eventObject: JQueryEventObject) => any;
+        onTableClick: (eventObject: JQueryEventObject) => void;
         playerInput: (playerIndex: number, callback: (playerIndex: number, row: number, col: number) => boolean) => void;
     }
 }

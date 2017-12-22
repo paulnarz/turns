@@ -11,6 +11,7 @@
 
         constructor(element: JQuery) {
             this.element = element;
+            console.log("dop");
         }
 
         attach = function (board: design.Grid<T>, display: (value: T) => string) {
@@ -45,7 +46,7 @@
 
             this.element.append(this.table);
 
-            this.table.click(e => this.onTableClick(e));
+            this.table.click(this.onTableClick);
         }
 
         draw = function () {
@@ -56,7 +57,7 @@
             }
         }
 
-        onTableClick = function (eventObject: JQueryEventObject): any {
+        onTableClick = (eventObject: JQueryEventObject) => {
             if (!eventObject || !eventObject.target || eventObject.target.tagName != "TD")
                 return;
 
@@ -70,7 +71,7 @@
             this.playerInputCallback(this.playerIndex, row, col);
         }
 
-        playerInput = function (playerIndex: number, callback: (playerIndex: number, row: number, col: number) => boolean): void {
+        playerInput = (playerIndex: number, callback: (playerIndex: number, row: number, col: number) => boolean): void => {
             this.playerIndex = playerIndex;
             this.playerInputCallback = callback;
         }
